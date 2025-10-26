@@ -1,0 +1,5 @@
+一个按钮
+
+需要Python3环境
+使用：git clone https://github.com/xhdndmm/abutton.git && cd abutton/ && pip install requirements.txt && python3 ./src/main.py
+需遵循MIT许可证
