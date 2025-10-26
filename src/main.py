@@ -1,6 +1,13 @@
-from flask import Flask, jsonify, render_template_string
-import json
-import os
+#src/mian.py
+#python3.x
+#https://github.com/xhdndmm/abutton
+
+try:
+    from flask import Flask, jsonify, render_template_string
+    import json
+    import os
+except Exception as e:
+    print("你的依赖没有安装完整",e)
 
 app = Flask(__name__)
 
@@ -11,10 +18,12 @@ if not os.path.exists(DATA_FILE):
     with open(DATA_FILE, "w") as f:
         json.dump({"count": 0}, f)
 
+#获取点击次数
 def get_count():
     with open(DATA_FILE, "r") as f:
         return json.load(f)["count"]
 
+#更新点击次数
 def save_count(count):
     with open(DATA_FILE, "w") as f:
         json.dump({"count": count}, f)
@@ -52,18 +61,23 @@ HTML_PAGE = """
 
         getCount();  // 页面加载时获取初始次数
     </script>
+    <br>
+    <a href="https://github.com/xhdndmm/abutton"源代码></a>
 </body>
 </html>
 """
 
+#主页路由
 @app.route("/")
 def index():
     return render_template_string(HTML_PAGE)
 
+#点击次数路由
 @app.route("/get_count")
 def get_count_api():
     return jsonify({"count": get_count()})
 
+#更新点击次数路由
 @app.route("/add", methods=["POST"])
 def add_count():
     count = get_count() + 1
@@ -71,4 +85,4 @@ def add_count():
     return jsonify({"count": count})
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=5000, threaded=True,debug = False)
+    app.run(host='0.0.0.0', port=5000, threaded=True,debug=False)
