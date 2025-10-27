@@ -62,7 +62,7 @@ HTML_PAGE = """
         getCount();  // 页面加载时获取初始次数
     </script>
     <br>
-    <a href="https://github.com/xhdndmm/abutton"源代码></a>
+    <a href="https://github.com/xhdndmm/abutton">源代码</a>
 </body>
 </html>
 """
